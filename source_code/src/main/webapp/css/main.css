@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: '微软雅黑';
+}
+
+.container {
+	width: 1280px !important;
+	max-width: none !important;
+}
