@@ -127,7 +127,6 @@ p {
 #pc-part-2-header {
 	background: #5196ce;
 }
-
 #pc-part-3-header {
 	background: #eee;
 	height: 44px;
@@ -138,6 +137,10 @@ p {
 
 #pc-part-3-center {
 	background: #eee;
+	float: left;
+}
+.ueditor-wrap{
+	
 }
 
 .footer {
@@ -150,4 +153,7 @@ p {
 }
 .margin-zero{
 	margin: 0;
+}
+.padding-zero{
+	padding: 0;
 }

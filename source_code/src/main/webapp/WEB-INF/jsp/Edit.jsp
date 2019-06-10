@@ -16,6 +16,13 @@
 <style type="text/css">
 @import url("<c:url value='/css/main.css'/>");
 </style>
+<style type="text/css">
+@import url("<c:url value='/css/mathquill.css'/>");
+</style>
+<style type="text/css">
+@import url("<c:url value='/css/umeditor.min.css'/>");
+</style>
+
 
 <title>My Cloud Note</title>
 </head>
@@ -46,26 +53,45 @@
 				</div>
 			</div>
 			<div id="pc-part-3-center">
-				<div style="padding: 5px 10px; background: #fff; height: 44px;">
-					<div id="pc-part-3-center-title" class="row margin-zero">
+				<div id="pc-part-3-center-title"
+					style="padding: 5px 0px; height: 44px;">
+					<div class="row margin-zero">
 						<div class="col-xs-9">
 							<input type="text" class="form-control" id="input-note-title"
 								placeholder="笔记本标题...">
 						</div>
 					</div>
 				</div>
-				<div id="ueditor-wrap" style="background: #ccc;">
-					<div id="pc-part-3-center-ueditor">ueditor</div>
+				<div id="pc-part-3-center-ueditor"">
+					<div class="ueditor-wrap margin-zero">
+						<div class="row margin-zero">
+							<div class="col-xs-12 margin-zero">
+								<script type="text/plain" id="myEditor"
+									style="width: 100%; height: 400px;">
+									<p>点击输入内容...</p>
+								</script>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<c:import url="footer.jsp"></c:import>
-
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="<c:url value='/js/jquery.slim.min.js'/>"></script>
+	<script src="<c:url value='/js/jquery.min.js'/>"></script>
 	<script src="<c:url value='/js/umd/popper.min.js'/>"></script>
 	<script src="<c:url value='/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/js/prototype.js'/>"></script>
+	<script src="<c:url value='/js/theme-setup.js'/>"></script>
+
+	<!-- ueditor -->
+	<script type="text/javascript" charset="utf-8"
+		src="<c:url value='/js/ue/umeditor.min.js'/>"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="<c:url value='/js/ue/umeditor.config.js'/>"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="<c:url value='/js/mathquill.min.js'/>"></script>
 	<!-- Optional JavaScript -->
 	<script type="text/javascript">
 		function get_dom(e) {
@@ -77,7 +103,9 @@
 			$("#pc-part-1-center").css("height", (pc_height - 31 - 31) + "px");
 			$("#pc-part-2-center").css("height", (pc_height - 31) + "px");
 			$("#pc-part-3-center").css("height", (pc_height - 44) + "px");
-			$("#ueditor-wrap").css("height", (pc_height - 44 - 44) + "px");
+			$(".ueditor-wrap").css("height", (pc_height - 44 - 44) + "px");
+			$("#myEditor").css("height", (pc_height - 44 - 44 - 100) + "px");
+			$("#myEditor").css("min-height", "0px");
 		}
 		function toggle_hidden() {
 			var pc_width = window.innerWidth;
@@ -94,14 +122,19 @@
 			// 开始写 jQuery 代码...
 			set_height();
 			toggle_hidden();
+			//实例化Ueditor编辑器
+			var um = UM.getEditor('myEditor');
 
 		});
 		//改变窗口大小时调整页面尺寸
 		window.onresize = function() {
 			set_height();
 			toggle_hidden();
+
+			var width = $("#pc-part-3").width();
+			$('.edui-container,.edui-editor-body').width(width - 30-2);
+			$('#myEditor').width(width - 30 -2- 20);
 		};
 	</script>
-
 </body>
 </html>
