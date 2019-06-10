@@ -5,11 +5,149 @@
 	padding: 0;
 }
 
+a:focus, a:hover {
+	text-decoration: none;
+}
+
+.header {
+	background: #232323;
+	height: 50px;
+	line-height: 50px;
+	color: #eee;
+	width: 100%;
+	position: relative;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	min-width: 600px !important;
+}
+
+.header .form-inline .form-control {
+	display: inline-block;
+	background-color: rgba(255, 255, 255, .25);
+	color: #bdc3c7;
+	border: 0;
+	padding-right: 34px;
+	width: 100%;
+	box-shadow: none;
+	border-radius: 3px;
+}
+
+.header-logo {
+	float: left;
+	width: 50px;
+	height: 50px;
+	background: #ddd;
+	margin-left: 18px;
+	padding: 0;
+	border: none;
+}
+
+.header-desc {
+	float: left;
+	font-size: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.header-func {
+	float: right;
+	width: 400px;
+	height: 50px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.header-func-search, .header-func-activity, .header-func-user {
+	float: left;
+}
+
+.header-func-search {
+	width: 200px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.header-func-activity {
+	width: 70px;
+	text-align: center;
+	font-size: 16px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #eee;
+}
+
+.header-func-activity a {
+	display: block;
+	color: #eee;
+}
+
+.header-func-activity:hover {
+	background: #808080;
+}
+
+.header-func-user {
+	width: 100px;
+	float: right;
+}
+
 body {
 	font-family: '微软雅黑';
 }
 
+p {
+	padding: 0;
+	margin: 0;
+}
+
 .container {
-	width: 1280px !important;
+	width: 960px !important;
 	max-width: none !important;
+}
+
+#pc-part-1-header, #pc-part-1-footer, #pc-part-2-header,
+	#pc-part-2-footer, #pc-part-3-header, #pc-part-3-footer,
+	#pc-part-4-header, #pc-part-4-footer, #pc-part-5-header,
+	#pc-part-5-footer {
+	height: 31px;
+}
+
+.pc-part {
+	margin: 0;
+	padding: 0;
+}
+
+.pc-part-center {
+	border-right: 1px solid #337ab7;
+	padding-left: 5px;
+}
+
+#pc-part-1-header, #pc-part-1-footer {
+	background: #337ab7;
+}
+
+#pc-part-2-header {
+	background: #5196ce;
+}
+
+#pc-part-3-header {
+	background: #eee;
+	height: 44px;
+	padding-top: 3px;
+	padding-bottom: 7px;
+	border-bottom: 2px solid #337ab7;
+}
+
+#pc-part-3-center {
+	background: #eee;
+}
+
+.footer {
+	height: 30px;
+	background: #232332;
+	padding-left: 10px;
+	padding-right: 10px;
+	line-height: 30px;
+	color: #ddd;
+}
+.margin-zero{
+	margin: 0;
 }

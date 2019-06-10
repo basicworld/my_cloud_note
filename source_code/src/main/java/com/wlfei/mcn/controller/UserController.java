@@ -26,7 +26,15 @@ public class UserController {
 		}
 		// 用户名和密码非空，跳转到编辑页面
 		return "Edit";
-
+	}
+	@RequestMapping(value = "/user/regist.do", method = RequestMethod.POST)
+	public String userRegist(@ModelAttribute User user, Model model) {
+		logger.info("request user regist");
+		logger.info(user);
+		// todo 用户信息校验
+		
+		// 用户名和密码非空，跳转到编辑页面
+		return "redirect:/login";
 	}
 
 }

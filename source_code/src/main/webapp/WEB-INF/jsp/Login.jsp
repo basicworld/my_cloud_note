@@ -25,9 +25,9 @@
 <body>
 	<div class="outer" id="outer">
 		<div class="log login_in">
-			<c:url var="loginFormAction" value="/user/login.do"></c:url>
+			<c:url var="formAction" value="/user/login.do"></c:url>
 			<form:form id="login-form" commandName="user"
-				action="${loginFormAction}" method="post" class="form-horizontal"
+				action="${formAction}" method="post" class="form-horizontal"
 				role="form">
 				<dl>
 					<dt class="header">
@@ -36,7 +36,7 @@
 					<dt></dt>
 					<dt class="letter">
 						<div class="form-group">
-							<label for="username" class="col-xs-2 control-label">用户名</label>
+							<label for="userName" class="col-xs-2 control-label">用户名</label>
 							<div class="col-xs-9">
 								<form:input class="form-control" id="userName" path="userName" />
 							</div>
@@ -45,7 +45,7 @@
 					</dt>
 					<dt class="letter">
 						<div class="form-group">
-							<label for="password" class="col-xs-2 control-label">密码</label>
+							<label for="userPassword" class="col-xs-2 control-label">密码</label>
 							<div class="col-xs-9">
 								<form:password class="form-control" id="userPassword"
 									path="userPassword" />
