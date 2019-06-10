@@ -108,6 +108,10 @@ p {
 	#pc-part-4-header, #pc-part-4-footer, #pc-part-5-header,
 	#pc-part-5-footer {
 	height: 31px;
+	color: #eee;
+	line-height: 30px;
+	font-size: 15px;
+	font-weight: bold;
 }
 
 .pc-part {
@@ -115,18 +119,66 @@ p {
 	padding: 0;
 }
 
+.pc-part ul {
+	margin-top: 1px;
+}
+.pc-part li{
+	cursor: default;
+}
+.pc-part li a {
+	padding: 0 0 0 20px;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	margin: 0;
+	color: #eee;
+}
+
+.pc-part li a:hover {
+	background: #65a2d3;
+	color: #eee;
+}
+
+.pc-part .checked {
+	background: #488fca;
+	color: #eee;
+}
+
+.pc-part .unchecked {
+	background: none;
+	color: #646464;
+}
+
 .pc-part-center {
 	border-right: 1px solid #337ab7;
 	padding-left: 5px;
+	position: relative;
+	top: 0;
+	bottom: 0;
+	padding-bottom: 40px;
+	right: 0px;
+	z-index: 9;
+	background-color: #FFF;
+	color: #000;
+	width: 100%;
+	overflow: hidden;
+	-webkit-transition: right .3s ease;
+	-ms-transition: right .3s ease;
+	transition: right .3s ease;
 }
 
 #pc-part-1-header, #pc-part-1-footer {
 	background: #337ab7;
 }
 
+.pc-part-span {
+	padding: 0 5px;
+}
+
 #pc-part-2-header {
 	background: #5196ce;
 }
+
 #pc-part-3-header {
 	background: #eee;
 	height: 44px;
@@ -139,8 +191,23 @@ p {
 	background: #eee;
 	float: left;
 }
-.ueditor-wrap{
+
+.module {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: auto;
+}
+
+.ueditor-wrap {
 	
+}
+
+.mybtn-plus {
+	float: right;
+	margin: 4px 8px 0px 0px;
 }
 
 .footer {
@@ -151,9 +218,11 @@ p {
 	line-height: 30px;
 	color: #ddd;
 }
-.margin-zero{
+
+.margin-zero {
 	margin: 0;
 }
-.padding-zero{
+
+.padding-zero {
 	padding: 0;
 }

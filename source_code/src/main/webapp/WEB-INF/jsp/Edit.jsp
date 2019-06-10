@@ -22,6 +22,7 @@
 <style type="text/css">
 @import url("<c:url value='/css/umeditor.min.css'/>");
 </style>
+<link rel="stylesheet" href="<c:url value='/css/font-awesome.min.css'/>">
 
 
 <title>My Cloud Note</title>
@@ -31,12 +32,34 @@
 	<div class="row" id="center" style="margin: 0">
 		<div id="toggle_hidden">
 			<div class="pc-part col-xs-2" id="pc-part-1">
-				<div id="pc-part-1-header">全部笔记本</div>
-				<div id="pc-part-1-center" class="pc-part-center">笔记本组</div>
+				<div id="pc-part-1-header">
+					<span class="pc-part-span">全部笔记本</span>
+					<button id="add-notebook" class="btn btn-default btn-xs mybtn-plus">
+						<i class="fa fa-plus"></i>
+					</button>
+				</div>
+				<div id="pc-part-1-center" class="pc-part-center">
+					<div class="module" data-toggle="niceScroll">
+						<div>
+							<ul>
+								<li><a class="unchecked"> <i class="fa fa-book"></i> 默认笔记本 </a></li>
+								<li><a class="checked"> <i class="fa fa-book"></i> 默认笔记本 </a></li>
+								<li><a class="unchecked"> <i class="fa fa-book"></i> 默认笔记本 </a></li>
+								<li><a class="unchecked"> <i class="fa fa-book"></i> 默认笔记本 </a></li>
+								<li><a class="unchecked"> <i class="fa fa-book"></i> 默认笔记本 </a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
 				<div id="pc-part-1-footer">删除 收藏 活动笔记</div>
 			</div>
 			<div class="pc-part col-xs-3" id="pc-part-2">
-				<div id="pc-part-2-header">全部笔记</div>
+				<div id="pc-part-2-header">
+					<span class="pc-part-span">全部笔记</span>
+					<button id="add-note" class="btn btn-default btn-xs mybtn-plus">
+						<i class="fa fa-plus"></i>
+					</button>
+				</div>
 				<div id="pc-part-2-center" class="pc-part-center">笔记组</div>
 			</div>
 
@@ -132,8 +155,8 @@
 			toggle_hidden();
 
 			var width = $("#pc-part-3").width();
-			$('.edui-container,.edui-editor-body').width(width - 30-2);
-			$('#myEditor').width(width - 30 -2- 20);
+			$('.edui-container,.edui-editor-body').width(width - 30 - 2);
+			$('#myEditor').width(width - 30 - 2 - 20);
 		};
 	</script>
 </body>
