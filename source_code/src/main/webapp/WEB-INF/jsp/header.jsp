@@ -14,6 +14,7 @@
 			</div>
 		</div>
 		<div class="header-func-user">
+			<div style="display: none" id="user-profile" token=""></div>
 			<span>东方不败</span>
 		</div>
 

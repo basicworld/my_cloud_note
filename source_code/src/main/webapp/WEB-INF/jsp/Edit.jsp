@@ -42,16 +42,40 @@
 					<div class="module" data-toggle="niceScroll">
 						<div>
 							<ul>
-								<li><a class="unchecked"> <i class="fa fa-book"></i> 默认笔记本 </a></li>
-								<li><a class="checked"> <i class="fa fa-book"></i> 默认笔记本 </a></li>
-								<li><a class="unchecked"> <i class="fa fa-book"></i> 默认笔记本 </a></li>
-								<li><a class="unchecked"> <i class="fa fa-book"></i> 默认笔记本 </a></li>
-								<li><a class="unchecked"> <i class="fa fa-book"></i> 默认笔记本 </a></li>
+								<li><a class="unchecked"> <i class="fa fa-book"></i>
+										默认笔记本
+								</a></li>
+								<li><a class="checked"> <i class="fa fa-book"></i>
+										默认笔记本
+								</a></li>
+								<li><a class="unchecked"> <i class="fa fa-book"></i>
+										默认笔记本
+								</a></li>
+								<li><a class="unchecked"> <i class="fa fa-book"></i>
+										默认笔记本
+								</a></li>
+								<li><a class="unchecked"> <i class="fa fa-book"></i>
+										默认笔记本
+								</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
-				<div id="pc-part-1-footer">删除 收藏 活动笔记</div>
+				<div id="pc-part-1-footer">
+					<div class="row margin-zero padding-zero">
+						<div class="col-xs-4 click" id="rollback_button" title='回收站'>
+							<i class='fa fa-trash-o'
+								style='font-size: 20px; line-height: 31px;'></i>
+						</div>
+						<div class="col-xs-4 click" id="rollback_button" title='收藏笔记本'>
+							<i class='fa fa-star' style='font-size: 20px; line-height: 31px;'></i>
+						</div>
+						<div class="col-xs-4 click" id="rollback_button" title='参加活动笔记'>
+							<i class='fa fa-users'
+								style='font-size: 20px; line-height: 31px;'></i>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="pc-part col-xs-3" id="pc-part-2">
 				<div id="pc-part-2-header">
@@ -60,7 +84,34 @@
 						<i class="fa fa-plus"></i>
 					</button>
 				</div>
-				<div id="pc-part-2-center" class="pc-part-center">笔记组</div>
+				<div id="pc-part-2-center" class="pc-part-center">
+					<div class="module" data-toggle="niceScroll">
+						<div>
+							<ul>
+								<li><a class="checked"> <i class="fa fa-file-text-o"></i>
+										默认笔记默认笔记默认笔记默
+										<div class="functions"
+											style="display: inline-block; position: absolute; right: 2px;">
+											<div title="移动" class="function">
+												<i class="fa fa-random small-icon"></i></div>
+											<div title="分享" class="function">
+												<i class="fa fa-sitemap small-icon"></i></div>
+											<div title="删除" class="function">
+												<i class="fa fa-close small-icon"></i></div>
+										</div>
+
+								</a></li>
+								<li><a class="unchecked"> <i class="fa fa-file-text-o"></i>
+										默认笔记
+								</a></li>
+								<li><a class="unchecked"> <i class="fa fa-file-text-o"></i>
+										默认笔记
+								</a></li>
+
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
 
 		</div>
@@ -75,24 +126,26 @@
 					<button class="btn btn-primary">保存笔记</button>
 				</div>
 			</div>
-			<div id="pc-part-3-center">
-				<div id="pc-part-3-center-title"
-					style="padding: 5px 0px; height: 44px;">
-					<div class="row margin-zero">
-						<div class="col-xs-9">
-							<input type="text" class="form-control" id="input-note-title"
-								placeholder="笔记本标题...">
-						</div>
-					</div>
-				</div>
-				<div id="pc-part-3-center-ueditor"">
+			<div id="pc-part-3-center" class="pc-part-center">
+				<div class="module" data-toggle="niceScroll">
 					<div class="ueditor-wrap margin-zero">
-						<div class="row margin-zero">
-							<div class="col-xs-12 margin-zero">
-								<script type="text/plain" id="myEditor"
-									style="width: 100%; height: 400px;">
+						<div id="pc-part-3-center-title"
+							style="padding: 5px 0px; height: 44px;">
+							<div class="row margin-zero">
+								<div class="col-xs-9">
+									<input type="text" class="form-control" id="input-note-title"
+										placeholder="笔记标题...">
+								</div>
+							</div>
+						</div>
+						<div id="pc-part-3-center-ueditor"">
+							<div class="row margin-zero">
+								<div class="col-xs-12 margin-zero">
+									<script type="text/plain" id="myEditor"
+										style="width: 100%; height: 400px;">
 									<p>点击输入内容...</p>
 								</script>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -128,7 +181,7 @@
 			$("#pc-part-3-center").css("height", (pc_height - 44) + "px");
 			$(".ueditor-wrap").css("height", (pc_height - 44 - 44) + "px");
 			$("#myEditor").css("height", (pc_height - 44 - 44 - 100) + "px");
-			$("#myEditor").css("min-height", "0px");
+			//$("#myEditor").css("min-height", "0px");
 		}
 		function toggle_hidden() {
 			var pc_width = window.innerWidth;
@@ -155,8 +208,8 @@
 			toggle_hidden();
 
 			var width = $("#pc-part-3").width();
-			$('.edui-container,.edui-editor-body').width(width - 30 - 2);
-			$('#myEditor').width(width - 30 - 2 - 20);
+			$('.edui-container,.edui-editor-body').width(width - 30 - 6);
+			$('#myEditor').width(width - 30 - 6 - 20);
 		};
 	</script>
 </body>

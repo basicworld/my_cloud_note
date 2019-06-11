@@ -104,9 +104,7 @@ p {
 }
 
 #pc-part-1-header, #pc-part-1-footer, #pc-part-2-header,
-	#pc-part-2-footer, #pc-part-3-header, #pc-part-3-footer,
-	#pc-part-4-header, #pc-part-4-footer, #pc-part-5-header,
-	#pc-part-5-footer {
+	#pc-part-2-footer {
 	height: 31px;
 	color: #eee;
 	line-height: 30px;
@@ -122,9 +120,11 @@ p {
 .pc-part ul {
 	margin-top: 1px;
 }
-.pc-part li{
+
+.pc-part li {
 	cursor: default;
 }
+
 .pc-part li a {
 	padding: 0 0 0 20px;
 	display: block;
@@ -225,4 +225,32 @@ p {
 
 .padding-zero {
 	padding: 0;
+}
+
+.click {
+	background: #65a2d3;
+	cursor: pointer;
+	height: 31px;
+	border-top: 1px solid #296596;
+	border-right: 1px solid #296596;
+	text-align: center;
+	color: #eee;
+}
+
+.click:hover {
+	background: #488fca;
+}
+
+.function {
+	width: 30px;
+	display: inline-block;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	float: left;
+}
+
+.small-icon {
+	font-size: 16px;
+	line-height: 30px;
 }
