@@ -10,19 +10,11 @@
 <!-- <meta name="viewport"	content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
 
 <!-- Bootstrap CSS -->
-<style type="text/css">
-@import url("<c:url value='/css/bootstrap.min.css'/>");
-</style>
-<style type="text/css">
-@import url("<c:url value='/css/main.css'/>");
-</style>
-<style type="text/css">
-@import url("<c:url value='/css/mathquill.css'/>");
-</style>
-<style type="text/css">
-@import url("<c:url value='/css/umeditor.min.css'/>");
-</style>
-<link rel="stylesheet" href="<c:url value='/css/font-awesome.min.css'/>">
+<style type="text/css">@import url("<c:url value='/css/bootstrap.min.css'/>");</style>
+<style type="text/css">@import url("<c:url value='/css/main.css'/>");</style>
+<style type="text/css">@import url("<c:url value='/css/mathquill.css'/>");</style>
+<style type="text/css">@import url("<c:url value='/css/umeditor.min.css'/>");</style>
+<link rel="stylesheet" href="<c:url value='/css/font-awesome.min.css'/>"/>
 
 
 <title>My Cloud Note</title>
@@ -160,6 +152,15 @@
 	<script src="<c:url value='/js/bootstrap.min.js'/>"></script>
 	<script src="<c:url value='/js/prototype.js'/>"></script>
 	<script src="<c:url value='/js/theme-setup.js'/>"></script>
+	<!-- 全局ajax -->
+	<script src="<c:url value='/js/base.js'/>"></script>
+	<script src="<c:url value='/js/notebook.js'/>"></script>
+	<script src="<c:url value='/js/note.js'/>"></script>
+	<script src="<c:url value='/js/login.js'/>"></script>
+	<script src="<c:url value='/js/cookie.js'/>"></script>
+	<script src="<c:url value='/js/token.js'/>"></script>
+	<!-- 页面事件 -->
+	<script src="<c:url value='/js/local.js'/>"></script>
 
 	<!-- ueditor -->
 	<script type="text/javascript" charset="utf-8"
@@ -180,7 +181,7 @@
 			$("#pc-part-2-center").css("height", (pc_height - 31) + "px");
 			$("#pc-part-3-center").css("height", (pc_height - 44) + "px");
 			$(".ueditor-wrap").css("height", (pc_height - 44 - 44) + "px");
-			$("#myEditor").css("height", (pc_height - 44 - 44 - 100) + "px");
+			//$("#myEditor").css("height", (pc_height - 44 - 44 - 100) + "px");
 			//$("#myEditor").css("min-height", "0px");
 		}
 		function toggle_hidden() {

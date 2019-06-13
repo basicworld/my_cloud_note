@@ -10,21 +10,28 @@
 <!-- <meta name="viewport"	content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
 
 <!-- Bootstrap CSS -->
-<style type="text/css">@import url("<c:url value='/css/bootstrap.min.css'/>");</style>
-<style type="text/css">@import url("<c:url value='/css/main.css'/>");</style>
-<style type="text/css">@import url("<c:url value='/css/login.css'/>");</style>
+<style type="text/css">
+@import url("<c:url value='/css/bootstrap.min.css'/>");
+</style>
+<style type="text/css">
+@import url("<c:url value='/css/main.css'/>");
+</style>
+<style type="text/css">
+@import url("<c:url value='/css/login.css'/>");
+</style>
 
-<title>Regist</title>
+<title>Login</title>
 </head>
 <body>
 	<div class="outer" id="outer">
 		<div class="log login_in" id="login-div" style="display: none;">
-			<c:url var="formAction" value="/user/regist.do"></c:url>
-			<form:form id="login-form" commandName="user" action="${formAction}"
-				method="post" class="form-horizontal" role="form">
+			<c:url id="loginUrl" var="formAction" value="/user/login.do"></c:url>
+			<form:form id="login-form" commandName="user"
+				action="${formAction}" method="post" class="form-horizontal"
+				role="form">
 				<dl>
 					<dt class="header">
-						<h3>注 册</h3>
+						<h3>登 录</h3>
 					</dt>
 					<dt></dt>
 					<dt class="letter">
@@ -32,15 +39,6 @@
 							<label for="userName" class="col-xs-2 control-label">用户名</label>
 							<div class="col-xs-9">
 								<form:input class="form-control" id="userName" path="userName" />
-							</div>
-							<div class="col-xs-1"></div>
-						</div>
-					</dt>
-					<dt class="letter">
-						<div class="form-group">
-							<label for="userNick" class="col-xs-2 control-label">昵称</label>
-							<div class="col-xs-9">
-								<form:input class="form-control" id="userNick" path="userNick" />
 							</div>
 							<div class="col-xs-1"></div>
 						</div>
@@ -55,21 +53,12 @@
 							<div class="col-xs-1"></div>
 						</div>
 					</dt>
-					<dt class="letter">
-						<div class="form-group">
-							<label for="userPassword2" class="col-xs-2 control-label">确认密码</label>
-							<div class="col-xs-9">
-								<input type="password" class="form-control" id="userPassword2" />
-							</div>
-							<div class="col-xs-1"></div>
-						</div>
-					</dt>
 					<dt class="button">
 						<div class="form-group">
 							<div class="col-xs-offset-4 col-xs-8">
-								<button type="submit" class="btn btn-primary" id="regist-btn">注册</button>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
-									class="btn btn-default" href="<c:url value='/login'/>">已有帐号,去登陆</a>
+								<button type="submit" class="btn btn-primary" id="login-btn">登录</button>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								<a class="btn btn-default" href="<c:url value='/regist'/>">注册</a>
 							</div>
 						</div>
 					</dt>
@@ -87,8 +76,8 @@
 		function set_height() {
 			var pc_height = window.innerHeight;
 			$("#outer").css({
-				"padding-top" : pc_height / 2 - 160 + "px",
-				"height" : pc_height / 2 + 160 + "px"
+				"padding-top" : pc_height / 2 - 140 + "px",
+				"height" : pc_height / 2 + 140 + "px"
 			});
 		}
 		$(document).ready(function() {
@@ -98,7 +87,6 @@
 			// 显示登录框
 			// 先隐藏后显示，是为了避免看到设置登录框居中效果时的过度画面
 			$("#login-div").attr("style","display:block;");
-
 
 		});
 		//改变窗口大小时调整页面尺寸

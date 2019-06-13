@@ -12,6 +12,8 @@
       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	<!-- 基于注解的控制器配置 扫描controller包下面的类 -->
 	<context:component-scan base-package="com.wlfei.mcn.controller"></context:component-scan>
+	<context:component-scan base-package="com.wlfei.mcn.service"></context:component-scan>
+	<context:component-scan base-package="com.wlfei.mcn.dao"></context:component-scan>
 	<!-- annotation-driven 做了很多事情 包括注册用于控制器注解的bean 没有annotaion-driven 则resources会阻止任意控制器被调用，不需要resources则不需要annotation-driven -->
 	<!-- 对应于conversionService bean -->
 	<mvc:annotation-driven></mvc:annotation-driven>
