@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wlfei.mcn.dao.ShareDao">
+	<!-- // 分享 将分享的内容插入到share表 public void share(Share share); -->
+	<!-- private String shareId; private String shareTitle; private String shareBody; 
+		private String noteId; -->
+	<insert id="share" parameterType="com.wlfei.mcn.entity.Share">
+		insert into cn_share(
+		cn_share_id,
+		cn_share_title,
+		cn_share_body,
+		cn_note_id)
+		values(
+		#{shareId},
+		#{shareTitle},
+		#{shareBody},
+		#{noteId})
+	</insert>
+	<!-- // 搜索 根据标题搜索分享的note public List<Share> findLikeTitle(String title); -->
+	<select id="findLikeTitle" parameterType="String"
+		resultType="com.wlfei.mcn.entity.Share">
+		select cn_share_id as shareId,
+		cn_share_title as shareTitle ,
+		cn_share_body as shareBody,
+		cn_note_id as noteId from
+		cn_share where cn_share_title like #{title}
+
+	</select>
+	<!-- // 查询 跟据shareId查询 public Share findById(String shareId); -->
+	<select id="findById" parameterType="String"
+		resultType="com.wlfei.mcn.entity.Share">
+		select cn_share_id as shareId,
+		cn_share_title as shareTitle ,
+		cn_share_body as shareBody,
+		cn_note_id as noteId from
+		cn_share where cn_share_id=#{shareId}
+
+	</select>
+</mapper>

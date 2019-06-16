@@ -18,26 +18,63 @@ import com.wlfei.mcn.util.NoteResult;
 @Controller
 public class UserController {
 	private static final Log logger = LogFactory.getLog(UserController.class);
-	
+
 	@Resource
 	private UserService userService;
 
+	/**
+	 * 登陆验证
+	 * 
+	 * @param userName
+	 * @param userPassword
+	 * @return
+	 */
 	@RequestMapping(value = "/user/login.do", method = RequestMethod.POST)
 	@ResponseBody
 	public NoteResult<User> userCheck(String userName, String userPassword) {
-		logger.info("request user check, userName="+userName + ", userPassword="+userPassword);
+		logger.info("request user check, userName=" + userName + ", userPassword=" + userPassword);
 		NoteResult<User> result = userService.checkLogin(userName, userPassword);
 		return result;
 
 	}
+
+	/**
+	 * 注册验证
+	 * 
+	 * @param user
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/user/regist.do", method = RequestMethod.POST)
-	public String userRegist(@ModelAttribute User user, Model model) {
+	@ResponseBody
+	public NoteResult<Object> userRegist(String userName, String userPassword, String userNick) {
 		logger.info("request user regist");
-		logger.info(user);
-		// todo 用户信息校验
-		
-		// 用户名和密码非空，跳转到编辑页面
-		return "redirect:/login";
+		NoteResult<Object> result = userService.addUser(userName, userPassword, userNick);
+		return result;
+	}
+
+	/**
+	 * 修改密码
+	 * 
+	 * @param userName      用户名
+	 * @param lastPassword  原密码
+	 * @param finalPassword 新密码
+	 * @return
+	 */
+	@RequestMapping(value = "/user/changepwd.do", method = RequestMethod.POST)
+	@ResponseBody
+	public NoteResult<Object> userChangePwd(String userName, String lastPassword, String finalPassword) {
+		logger.info("request user userChangePwd, userName=" + userName + ",lastPassword=" + lastPassword
+				+ ",finalPassword=" + finalPassword);
+		NoteResult<Object> result = userService.changeUser(userName, lastPassword, finalPassword);
+		return result;
+	}
+	@RequestMapping(value = "/user/logout.do", method = RequestMethod.POST)
+	@ResponseBody
+	public NoteResult<User> userLogout(String userName, String userToken) {
+		logger.info("request user userLogout");
+		NoteResult<User> result = userService.logout(userName, userToken);
+		return result;
 	}
 
 }

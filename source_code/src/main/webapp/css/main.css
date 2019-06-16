@@ -88,6 +88,11 @@ a:focus, a:hover {
 	width: 100px;
 	float: right;
 }
+.header-func-user a.icon{
+	margin-left: 5px;
+	color: #eee;
+	cursor: pointer;
+}
 
 body {
 	font-family: '微软雅黑';

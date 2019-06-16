@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wlfei.mcn.entity.Note">
+	<!-- // 根据笔记本ID查找笔记 返回list public List<Map> findByBookId(String bookId); -->
+	<select id="findByBookId" parameterType="String"
+		resultType="Map">
+		select cn_note_id,cn_note_title from cn_note where
+		cn_notebook_id=#{bookId}
+		and cn_note_status_id='1'
+	</select>
+	<!--// 根据笔记ID查找笔记 返回一个笔记 public Note findByNoteId(String noteId); -->
+	<select id="findByNoteId" parameterType="String"
+		resultType="com.wlfei.mcn.entity.Note">
+		select cn_note_id as noteId,
+		cn_notebook_id as notebookId,
+		cn_user_id as userId,
+		cn_note_status_id as noteStatusId,
+		cn_note_type_id as noteTypeId,
+		cn_note_title as noteTitle,
+		cn_note_body
+		as noteBody,
+		cn_note_create_time as noteCreateTime,
+		cn_note_last_modify_time as noteLastModifyTime
+		from cn_note where
+		cn_note_id=#{noteId}
+	</select>
+	<!--// 跟新笔记 返回笔记id public int updateNote(Note note); -->
+	<!-- private String noteId; private String notebookId; private String userId; 
+		private String noteStatusId; private String noteTypeId; private String noteTitle; 
+		private String noteBody; private Long noteCreateTime; private Long noteLastModifyTime; -->
+	<update id="updateNote"
+		parameterType="com.wlfei.mcn.entity.Note">
+		update cn_note set cn_note_title=#{noteTitle},
+		cn_note_body=#{noteBody},
+		cn_note_last_modify_time=#{noteLastModifyTime}
+		where
+		cn_note_id=#{noteId}
+	</update>
+
+	<!--// 增加笔记 public void save(Note note); -->
+	<!-- private String noteId; private String notebookId; private String userId; 
+		private String noteStatusId; private String noteTypeId; private String noteTitle; 
+		private String noteBody; private Long noteCreateTime; private Long noteLastModifyTime; -->
+	<insert id="save" parameterType="com.wlfei.mcn.entity.Note">
+		insert into cn_note(
+		cn_note_id,
+		cn_notebook_id,
+		cn_user_id,
+		cn_note_status_id,
+		cn_note_type_id,
+		cn_note_title,
+		cn_note_body,
+		cn_note_create_time,
+		cn_note_last_modify_time)
+		values(
+		#{noteId},
+		#{notebookId},
+		#{userId},
+		#{noteStatusId},
+		#{noteTypeId},
+		#{noteTitle},
+		#{noteBody},
+		#{noteCreateTime},
+		#{noteLastModifyTime}
+		)
+	</insert>
+	<!--// 删除或移动笔记 public int dynamicUpdate(Note note); -->
+	<update id="dynamicUpdate"
+		parameterType="com.wlfei.mcn.entity.Note">
+		update cn_note
+		<set>
+			<if test="noteTypeId!=null">
+				cn_note_type_id=#{noteTypeId},
+			</if>
+			<if test="noteStatusId!=null">
+				cn_note_status_id=#{noteStatusId},
+			</if>
+			<if test="notebookId!=null">
+				cn_notebook_id=#{notebookId},
+			</if>
+			<if test="noteTitle!=null">
+				cn_note_title=#{noteTitle},
+			</if>
+			<if test="noteBody!=null">
+				cn_note_body=#{noteBody},
+			</if>
+			<if test="noteLastModifyTime!=null">
+				cn_note_last_modify_time=#{noteLastModifyTime}
+			</if>
+		</set>
+		where cn_note_id=#{noteId}
+	</update>
+</mapper>

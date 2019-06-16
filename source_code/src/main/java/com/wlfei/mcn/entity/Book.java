@@ -1,7 +1,7 @@
 package com.wlfei.mcn.entity;
 
 import java.io.Serializable;
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 /**
  * 笔记本

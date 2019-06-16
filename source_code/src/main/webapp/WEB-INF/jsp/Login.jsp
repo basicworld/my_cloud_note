@@ -9,11 +9,11 @@
 <!-- <meta name="viewport"	content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
 
 <!-- Bootstrap CSS -->
-<style type="text/css">@import url("<c:url value='/css/bootstrap.min.css'/>");</style>
-<style type="text/css">@import url("<c:url value='/css/main.css'/>");</style>
-<style type="text/css">@import url("<c:url value='/css/login.css'/>");</style>
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/bootstrap.min.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/main.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/login.css'/>">
 
-<title>登录 | 我的云笔记</title>
+<title>登录 - 我的云笔记</title>
 </head>
 <body>
 	<div class="outer" id="outer">

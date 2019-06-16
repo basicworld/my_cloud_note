@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="<c:url value='/css/font-awesome.min.css'/>"/>
 
 
-<title>My Cloud Note</title>
+<title>主页 - 我的云笔记</title>
 </head>
 <body>
 	<c:import url="header.jsp"></c:import>

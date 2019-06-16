@@ -20,14 +20,17 @@ public class MainController {
 	@RequestMapping(value = { "/login", "/" })
 	public String login(Model model) {
 		logger.info("request login");
-		model.addAttribute("user", new User());
 		return "Login";
 	}
 
 	@RequestMapping(value = "/regist")
 	public String register(Model model) {
 		logger.info("request regist");
-		model.addAttribute("user", new User());
 		return "Regist";
+	}
+	@RequestMapping(value = "/changepwd")
+	public String changePassword(Model model) {
+		logger.info("request changePassword");
+		return "ChangePwd";
 	}
 }

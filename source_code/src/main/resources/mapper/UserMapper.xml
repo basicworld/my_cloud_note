@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wlfei.mcn.dao.UserDao">
+	<!-- com.wlfei.mcn.entity.User -->
+	<!-- // 根据用户名查找 返回用户对象 public User findByName(String name); -->
+	<select id="findByName" parameterType="String"
+		resultType="com.wlfei.mcn.entity.User">
+		select cn_user_id as userId,
+		cn_user_name as userName,
+		cn_user_password as userPassword,
+		cn_user_nick as userNick,
+		cn_user_token as userToken
+		from cn_user where
+		cn_user_name=#{name}
+
+	</select>
+	<!-- // 保存用户 public void save(User user); -->
+	<!-- private String userId; private String userName; private String userPassword; 
+		private String userToken; private String userNick; private List<Book> books; -->
+	<insert id="save" parameterType="com.wlfei.mcn.entity.User">
+		insert into
+		cn_user(cn_user_id,cn_user_name,cn_user_password,cn_user_nick,cn_user_token)
+		values(#{userId},#{userName},#{userPassword},#{userNick},#{userToken})
+	</insert>
+	<!-- // 修改用户密码 public void change(User user); -->
+	<update id="change" parameterType="com.wlfei.mcn.entity.User">
+		update cn_user set
+		cn_user_password=#{userPassword} where
+		cn_user_id=#{userId}
+	</update>
+</mapper>

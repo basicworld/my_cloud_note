@@ -41,8 +41,10 @@ public class NoteUtil {
 	
 	public static void main(String[] args) throws Exception{
 		System.out.println(md5("123456"));
+		System.out.println(md5("1234567"));
 		System.out.println(md5("12354654676dfdfdfdf"));
 		System.out.println(createId());
 		System.out.println(createId());
 	}
+	
 }
