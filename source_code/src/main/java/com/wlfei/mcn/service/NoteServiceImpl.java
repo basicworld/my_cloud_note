@@ -106,6 +106,9 @@ public class NoteServiceImpl implements NoteService {
 
 	}
 
+	/**
+	 * 删除笔记
+	 */
 	public NoteResult deleteNote(String noteId) {
 		Note note = new Note();
 		note.setNoteId(noteId);
@@ -126,6 +129,9 @@ public class NoteServiceImpl implements NoteService {
 		}
 	}
 
+	/**
+	 * 移动笔记
+	 */
 	public NoteResult moveNote(String noteId, String bookId) {
 		Note note = new Note();
 		note.setNoteId(noteId);

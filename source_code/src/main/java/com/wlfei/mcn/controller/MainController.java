@@ -16,6 +16,11 @@ import com.wlfei.mcn.entity.User;
 @Controller
 public class MainController {
 	private static final Log logger = LogFactory.getLog(MainController.class);
+	@RequestMapping(value="edit")
+	public String edit() {
+		logger.info("request edit");
+		return "Edit";
+	}
 
 	@RequestMapping(value = { "/login", "/" })
 	public String login(Model model) {

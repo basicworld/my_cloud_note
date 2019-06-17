@@ -10,11 +10,16 @@
 <!-- <meta name="viewport"	content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
 
 <!-- Bootstrap CSS -->
-<style type="text/css">@import url("<c:url value='/css/bootstrap.min.css'/>");</style>
-<style type="text/css">@import url("<c:url value='/css/main.css'/>");</style>
-<style type="text/css">@import url("<c:url value='/css/mathquill.css'/>");</style>
-<style type="text/css">@import url("<c:url value='/css/umeditor.min.css'/>");</style>
-<link rel="stylesheet" href="<c:url value='/css/font-awesome.min.css'/>"/>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/bootstrap.min.css'/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/main.css'/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/mathquill.css'/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/umeditor.min.css'/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/font-awesome.min.css'/>">
 
 
 <title>主页 - 我的云笔记</title>
@@ -22,13 +27,62 @@
 <body>
 	<c:import url="header.jsp"></c:import>
 	<div class="row" id="center" style="margin: 0">
+		<!-- 灰色遮蔽层 暂时不用哦 使用模态框替换本div -->
+		<div class="opacity_background" style='display: none'></div>
+		<!-- 加载其他图层用占位符 暂时不用哦  -->
+		<div id="can"></div>
 		<div id="toggle_hidden">
+			<!-- 笔记本栏 -->
+
 			<div class="pc-part col-xs-2" id="pc-part-1">
+				<div style="display: none" id="listNotebooksUrl"
+					value="<c:url value='/book/listbooks.do'/>"></div>
+				<div style="display: none" id="addNotebookUrl"
+					value="<c:url value='/book/insert.do'/>"></div>
 				<div id="pc-part-1-header">
 					<span class="pc-part-span">全部笔记本</span>
-					<button id="add-notebook" class="btn btn-default btn-xs mybtn-plus">
+					<!-- 添加笔记本按钮 点击触发模态框 -->
+					<button class="btn btn-default btn-xs mybtn-plus"
+						data-toggle="modal" data-target="#addNotebookModal">
 						<i class="fa fa-plus"></i>
 					</button>
+					<!-- 添加笔记本模态框（Modal） -->
+					<div class="modal fade" id="addNotebookModal" tabindex="-1"
+						role="dialog" aria-labelledby="add-notebook-label"
+						aria-hidden="true" style="display: none;">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">×</button>
+									<h4 class="modal-title" id="add-notebook-label">添加笔记本</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<!-- 笔记本名称输入框 -->
+										<div>
+											<label for="notebookName" class="col-xs-3 control-label">笔记本名称</label>
+											<div class="col-xs-8">
+												<input type="text" class="form-control" id="notebookName" />
+											</div>
+											<div class="col-xs-1"></div>
+										</div>
+										<!-- 输入框end -->
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">关闭</button>
+									<!-- 点击确认触发绑定事件 添加笔记本 -->
+									<button type="button" class="btn btn-primary"
+										id="add-notebook-btn">确认</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- /.modal -->
 				</div>
 				<div id="pc-part-1-center" class="pc-part-center">
 					<div class="module" data-toggle="niceScroll">
@@ -85,11 +139,14 @@
 										<div class="functions"
 											style="display: inline-block; position: absolute; right: 2px;">
 											<div title="移动" class="function">
-												<i class="fa fa-random small-icon"></i></div>
+												<i class="fa fa-random small-icon"></i>
+											</div>
 											<div title="分享" class="function">
-												<i class="fa fa-sitemap small-icon"></i></div>
+												<i class="fa fa-sitemap small-icon"></i>
+											</div>
 											<div title="删除" class="function">
-												<i class="fa fa-close small-icon"></i></div>
+												<i class="fa fa-close small-icon"></i>
+											</div>
 										</div>
 
 								</a></li>
@@ -151,7 +208,6 @@
 	<script src="<c:url value='/js/umd/popper.min.js'/>"></script>
 	<script src="<c:url value='/js/bootstrap.min.js'/>"></script>
 	<script src="<c:url value='/js/prototype.js'/>"></script>
-	<script src="<c:url value='/js/theme-setup.js'/>"></script>
 	<!-- 全局ajax -->
 	<script src="<c:url value='/js/base.js'/>"></script>
 	<script src="<c:url value='/js/notebook.js'/>"></script>

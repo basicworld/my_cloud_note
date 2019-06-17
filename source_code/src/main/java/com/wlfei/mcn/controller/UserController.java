@@ -40,9 +40,9 @@ public class UserController {
 
 	/**
 	 * 注册验证
-	 * 
-	 * @param user
-	 * @param model
+	 * @param userName
+	 * @param userPassword
+	 * @param userNick
 	 * @return
 	 */
 	@RequestMapping(value = "/user/regist.do", method = RequestMethod.POST)
@@ -69,6 +69,13 @@ public class UserController {
 		NoteResult<Object> result = userService.changeUser(userName, lastPassword, finalPassword);
 		return result;
 	}
+	/**
+	 * 退出登录
+	 * 只是个架子，没有实际功能
+	 * @param userName
+	 * @param userToken
+	 * @return
+	 */
 	@RequestMapping(value = "/user/logout.do", method = RequestMethod.POST)
 	@ResponseBody
 	public NoteResult<User> userLogout(String userName, String userToken) {

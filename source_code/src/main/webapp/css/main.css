@@ -111,10 +111,13 @@ p {
 #pc-part-1-header, #pc-part-1-footer, #pc-part-2-header,
 	#pc-part-2-footer {
 	height: 31px;
-	color: #eee;
+	
 	line-height: 30px;
 	font-size: 15px;
 	font-weight: bold;
+}
+.pc-part-span{
+	color: #eee;
 }
 
 .pc-part {
@@ -258,4 +261,16 @@ p {
 .small-icon {
 	font-size: 16px;
 	line-height: 30px;
+}
+.opacity_background{
+	width:100%;
+	height:100%;
+	position:fixed;
+	top:0;
+	left:0;
+	background:#000;
+	opacity:0.6;
+	margin:auto;
+	z-index:1049;
+	display:none;
 }

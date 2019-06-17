@@ -41,6 +41,7 @@ function login() {
 				// 登陆成功，进入系统
 				addToken(result.data.userToken);
 				addCookie("userName", result.data.userName, 5);
+				addCookie("userId", result.data.userId, 5);
 				location.href = "edit";
 			} else {
 				alert(result.msg);
