@@ -11,35 +11,39 @@ function listNotebooks() {
 	}
 	// 
 	var listNotebooksUrl = $("#listNotebooksUrl").attr("value");
-	console.log(loginurl);
-	$.ajax({
-		type : "post",
-		url : listNotebooksUrl,
-		dateTyoe : "json",
-		data : {
-			"userId" : userId,
-			"token" : token
-		},
-		success : function(result) {
-			console.log(result);
-			if (result.status == 0) {
-				var list = result.data;
-				$(list).each(
-						function() {
-							// 添加笔记本和数据
-							$("#pc-part-1 ul").append(
-									'<li><a class="unchecked"> <i class="fa fa-book"></i> '
-											+ this.notebookName + '</a></li>');
-							$("#pc-part-1 li:last").data("notebook", this);
-						});
-			} else {
-				alert(result.msg);
-			}
-		},
-		error : function(xhr, status, error) {
-			alert("服务器连接失败");
-		}
-	});
+	$
+			.ajax({
+				type : "post",
+				url : listNotebooksUrl,
+				dateTyoe : "json",
+				data : {
+					"userId" : userId,
+					"token" : token
+				},
+				success : function(result) {
+					console.log(result);
+					if (result.status == 0) {
+						var list = result.data;
+						$(list)
+								.each(
+										function() {
+											// 添加笔记本和数据
+											$("#pc-part-1 ul")
+													.append(
+															'<li><a class="unchecked"> <i class="fa fa-book"></i> '
+																	+ this.notebookName
+																	+ '<div class="functions"style="display: inline-block; position: absolute; right: 2px;"> <div title="删除" class="function"> <i class="fa fa-close small-icon"></i> </div> </div></a></li>');
+											$("#pc-part-1 li:last").data(
+													"notebook", this);
+										});
+					} else {
+						alert(result.msg);
+					}
+				},
+				error : function(xhr, status, error) {
+					alert("服务器连接失败");
+				}
+			});
 }
 
 // 添加笔记本
@@ -47,9 +51,45 @@ function addNoteBook(notebookName) {
 	var userId = getCookie("userId");
 	var token = getToken();
 	var addNotebookUrl = $("#addNotebookUrl").attr("value");
+	$
+			.ajax({
+				type : "post",
+				url : addNotebookUrl,
+				dateTyoe : "json",
+				data : {
+					"userId" : userId,
+					"token" : token,
+					"title" : notebookName,
+				},
+				success : function(result) {
+					console.log(result);
+					if (result.status == 0) {
+						var notebook = result.data;
+						// 显示新添加的笔记本和数据
+						$("#pc-part-1 li:first")
+								.after(
+										'<li><a class="unchecked"> <i class="fa fa-book"></i> '
+												+ notebook.notebookName
+												+ '<div class="functions"style="display: inline-block; position: absolute; right: 2px;"> <div title="删除" class="function"> <i class="fa fa-close small-icon"></i> </div> </div></a></li>');
+						$("#pc-part-1 li:first").next().data("notebook",
+								notebook);
+					} else {
+						alert(result.msg);
+					}
+				},
+				error : function(xhr, status, error) {
+					alert("服务器连接失败");
+				}
+			});
+}
+// 删除笔记本
+function deleteNoteBook(notebookName) {
+	var userId = getCookie("userId");
+	var token = getToken();
+	var deleteNotebookUrl = $("#deleteNotebookUrl").attr("value");
 	$.ajax({
 		type : "post",
-		url : addNotebookUrl,
+		url : deleteNotebookUrl,
 		dateTyoe : "json",
 		data : {
 			"userId" : userId,

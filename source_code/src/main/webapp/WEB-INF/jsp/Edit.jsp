@@ -25,12 +25,16 @@
 <title>主页 - 我的云笔记</title>
 </head>
 <body>
+	<!-- header area start -->
 	<c:import url="header.jsp"></c:import>
+	<!-- header area end -->
+	<!-- 内容区start -->
 	<div class="row" id="center" style="margin: 0">
 		<!-- 灰色遮蔽层 暂时不用哦 使用模态框替换本div -->
 		<div class="opacity_background" style='display: none'></div>
 		<!-- 加载其他图层用占位符 暂时不用哦  -->
 		<div id="can"></div>
+		<!-- 可隐藏区域start 当浏览器宽度小于一定值后 隐藏本区域 -->
 		<div id="toggle_hidden">
 			<!-- 笔记本栏 -->
 
@@ -39,7 +43,7 @@
 					value="<c:url value='/book/listbooks.do'/>"></div>
 				<div style="display: none" id="addNotebookUrl"
 					value="<c:url value='/book/insert.do'/>"></div>
-				<div id="pc-part-1-header">
+				<div id="pc-part-1-header" class="pc-part-header">
 					<span class="pc-part-span">全部笔记本</span>
 					<!-- 添加笔记本按钮 点击触发模态框 -->
 					<button class="btn btn-default btn-xs mybtn-plus"
@@ -83,6 +87,33 @@
 						<!-- /.modal-dialog -->
 					</div>
 					<!-- /.modal -->
+					<!-- 删除笔记本模态框（Modal） -->
+					<div class="modal fade" id="deleteNotebookModal" tabindex="-1"
+						role="dialog" aria-labelledby="delete-notebook-label"
+						aria-hidden="true" style="display: none;">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">×</button>
+									<h4 class="modal-title" id="delete-notebook-label">删除确认</h4>
+								</div>
+								<div class="modal-body">
+									<span id="delete-notebook-text">确认删除笔记本吗？删除后可在回收站找回。</span>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">关闭</button>
+									<!-- 点击确认触发绑定事件 删除笔记本 -->
+									<button type="button" class="btn btn-primary"
+										id="delete-notebook-btn">确认</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- /.modal -->
 				</div>
 				<div id="pc-part-1-center" class="pc-part-center">
 					<div class="module" data-toggle="niceScroll">
@@ -90,8 +121,14 @@
 							<ul>
 								<li><a class="unchecked"> <i class="fa fa-book"></i>
 										默认笔记本
+										<div class="functions"
+											style="display: inline-block; position: absolute; right: 2px;">
+											<div title="删除" class="function">
+												<i class="fa fa-close small-icon"></i>
+											</div>
+										</div>
 								</a></li>
-								<li><a class="checked"> <i class="fa fa-book"></i>
+								<!-- <li><a class="checked"> <i class="fa fa-book"></i>
 										默认笔记本
 								</a></li>
 								<li><a class="unchecked"> <i class="fa fa-book"></i>
@@ -102,35 +139,37 @@
 								</a></li>
 								<li><a class="unchecked"> <i class="fa fa-book"></i>
 										默认笔记本
-								</a></li>
+								</a></li> -->
 							</ul>
 						</div>
 					</div>
 				</div>
 				<div id="pc-part-1-footer">
 					<div class="row margin-zero padding-zero">
-						<div class="col-xs-4 click" id="rollback_button" title='回收站'>
+						<div class="col-xs-4 click" id="recycle-btn" title='回收站'>
 							<i class='fa fa-trash-o'
 								style='font-size: 20px; line-height: 31px;'></i>
 						</div>
-						<div class="col-xs-4 click" id="rollback_button" title='收藏笔记本'>
+						<div class="col-xs-4 click" id="like-btn" title='我的收藏'>
 							<i class='fa fa-star' style='font-size: 20px; line-height: 31px;'></i>
 						</div>
-						<div class="col-xs-4 click" id="rollback_button" title='参加活动笔记'>
-							<i class='fa fa-users'
-								style='font-size: 20px; line-height: 31px;'></i>
+						<div class="col-xs-4 click" id="shared-btn" title='我的分享'>
+							<i class='fa fa-rss' style='font-size: 20px; line-height: 31px;'></i>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="pc-part col-xs-3" id="pc-part-2">
-				<div id="pc-part-2-header">
+			<!-- 笔记栏start -->
+			<div class="pc-part col-xs-3" id="pc-part-2" style="display:;">
+				<div id="pc-part-2-header" class="pc-part-header">
 					<span class="pc-part-span">全部笔记</span>
 					<button id="add-note" class="btn btn-default btn-xs mybtn-plus">
 						<i class="fa fa-plus"></i>
 					</button>
 				</div>
+				<!-- center start -->
 				<div id="pc-part-2-center" class="pc-part-center">
+					<!-- niceScroll -->
 					<div class="module" data-toggle="niceScroll">
 						<div>
 							<ul>
@@ -142,9 +181,72 @@
 												<i class="fa fa-random small-icon"></i>
 											</div>
 											<div title="分享" class="function">
-												<i class="fa fa-sitemap small-icon"></i>
+												<i class="fa fa-share small-icon"></i>
 											</div>
 											<div title="删除" class="function">
+												<i class="fa fa-close small-icon"></i>
+											</div>
+										</div>
+
+								</a></li>
+								<li><a class="unchecked"> <i class="fa fa-file-text-o"></i>
+										默认笔记
+										<div class="functions"
+											style="display: inline-block; position: absolute; right: 2px;">
+											<div title="移动" class="function">
+												<i class="fa fa-random small-icon"></i>
+											</div>
+											<div title="分享" class="function">
+												<i class="fa fa-share small-icon"></i>
+											</div>
+											<div title="删除" class="function">
+												<i class="fa fa-close small-icon"></i>
+											</div>
+										</div>
+								</a></li>
+								<li><a class="unchecked"> <i class="fa fa-file-text-o"></i>
+										默认笔记
+										<div class="functions"
+											style="display: inline-block; position: absolute; right: 2px;">
+											<div title="移动" class="function">
+												<i class="fa fa-random small-icon"></i>
+											</div>
+											<div title="分享" class="function">
+												<i class="fa fa-share small-icon"></i>
+											</div>
+											<div title="删除" class="function">
+												<i class="fa fa-close small-icon"></i>
+											</div>
+										</div>
+								</a></li>
+
+							</ul>
+						</div>
+					</div>
+					<!-- /.niceScroll -->
+				</div>
+				<!-- /.center -->
+			</div>
+			<!-- 笔记栏end -->
+			<!-- 回收站笔记start -->
+			<div class="pc-part col-xs-3" id="pc-part-4" style="display: none;">
+				<div id="pc-part-4-header" class="pc-part-header">
+					<span class="pc-part-span">回收站笔记</span>
+				</div>
+				<!-- center start -->
+				<div id="pc-part-4-center" class="pc-part-center">
+					<!-- niceScroll -->
+					<div class="module" data-toggle="niceScroll">
+						<div>
+							<ul>
+								<li><a class="checked"> <i class="fa fa-file-text-o"></i>
+										回收的笔记
+										<div class="functions"
+											style="display: inline-block; position: absolute; right: 2px;">
+											<div title="恢复" class="function">
+												<i class="fa fa-undo small-icon"></i>
+											</div>
+											<div title="永久删除" class="function">
 												<i class="fa fa-close small-icon"></i>
 											</div>
 										</div>
@@ -160,12 +262,124 @@
 							</ul>
 						</div>
 					</div>
+					<!-- /.niceScroll -->
 				</div>
+				<!-- /.center -->
 			</div>
+			<!-- 回收站笔记end -->
+			<!-- 搜索结果start -->
+			<div class="pc-part col-xs-3" id="pc-part-5" style="display: none;">
+				<div id="pc-part-5-header" class="pc-part-header">
+					<span class="pc-part-span">搜索结果</span>
+				</div>
+				<!-- center start -->
+				<div id="pc-part-5-center" class="pc-part-center">
+					<!-- niceScroll -->
+					<div class="module" data-toggle="niceScroll">
+						<div>
+							<ul>
+								<li><a class="checked"> <i class="fa fa-file-text-o"></i>
+										搜索到的笔记
+										<div class="functions"
+											style="display: inline-block; position: absolute; right: 2px;">
+											<div title="点击收藏" class="function">
+												<i class="fa fa-star-o small-icon"></i>
+											</div>
+										</div>
+
+								</a></li>
+								<li><a class="unchecked"> <i class="fa fa-file-text-o"></i>
+										默认笔记
+								</a></li>
+								<li><a class="unchecked"> <i class="fa fa-file-text-o"></i>
+										默认笔记
+								</a></li>
+
+							</ul>
+						</div>
+					</div>
+					<!-- /.niceScroll -->
+				</div>
+				<!-- /.center -->
+			</div>
+			<!-- 搜索结果end -->
+			<!-- 收藏夹start -->
+			<div class="pc-part col-xs-3" id="pc-part-6" style="display: none">
+				<div id="pc-part-6-header" class="pc-part-header">
+					<span class="pc-part-span">收藏夹</span>
+				</div>
+				<!-- center start -->
+				<div id="pc-part-6-center" class="pc-part-center">
+					<!-- niceScroll -->
+					<div class="module" data-toggle="niceScroll">
+						<div>
+							<ul>
+								<li><a class="checked"> <i class="fa fa-file-text-o"></i>
+										收藏的笔记
+										<div class="functions"
+											style="display: inline-block; position: absolute; right: 2px;">
+											<div title="点击取消收藏" class="function">
+												<i class="fa fa-star small-icon"></i>
+											</div>
+										</div>
+
+								</a></li>
+								<li><a class="unchecked"> <i class="fa fa-file-text-o"></i>
+										默认笔记
+								</a></li>
+								<li><a class="unchecked"> <i class="fa fa-file-text-o"></i>
+										默认笔记
+								</a></li>
+
+							</ul>
+						</div>
+					</div>
+					<!-- /.niceScroll -->
+				</div>
+				<!-- /.center -->
+			</div>
+			<!-- 搜索结果end -->
+			<!-- 我的分享start -->
+			<div class="pc-part col-xs-3" id="pc-part-7" style="display: none;">
+				<div id="pc-part-7-header" class="pc-part-header">
+					<span class="pc-part-span">我的分享</span>
+				</div>
+				<!-- center start -->
+				<div id="pc-part-7-center" class="pc-part-center">
+					<!-- niceScroll -->
+					<div class="module" data-toggle="niceScroll">
+						<div>
+							<ul>
+								<li><a class="checked"> <i class="fa fa-file-text-o"></i>
+										已分享的笔记
+										<div class="functions"
+											style="display: inline-block; position: absolute; right: 2px;">
+											<div title="点击取消分享" class="function">
+												<i class="fa fa-star small-icon"></i>
+											</div>
+										</div>
+
+								</a></li>
+								<li><a class="unchecked"> <i class="fa fa-file-text-o"></i>
+										默认笔记
+								</a></li>
+								<li><a class="unchecked"> <i class="fa fa-file-text-o"></i>
+										默认笔记
+								</a></li>
+
+							</ul>
+						</div>
+					</div>
+					<!-- /.niceScroll -->
+				</div>
+				<!-- /.center -->
+			</div>
+			<!-- 搜索结果end -->
 
 		</div>
-
-		<div class="pc-part col-xs-7" id="pc-part-3">
+		<!-- 可隐藏区域end -->
+		<!-- 笔记编辑区start -->
+		<div class="pc-part col-xs-7" id="pc-part-3" style="display: none;">
 			<div id="pc-part-3-header">
 				<div
 					style="float: left; font-size: 18px; line-height: 31px; padding: 3px 10px;">
@@ -201,21 +415,25 @@
 				</div>
 			</div>
 		</div>
+		<!-- 笔记编辑区end -->
 	</div>
+	<!-- 内容区end -->
+	<!-- footer area start -->
 	<c:import url="footer.jsp"></c:import>
+	<!-- footer area end -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="<c:url value='/js/jquery.min.js'/>"></script>
 	<script src="<c:url value='/js/umd/popper.min.js'/>"></script>
 	<script src="<c:url value='/js/bootstrap.min.js'/>"></script>
 	<script src="<c:url value='/js/prototype.js'/>"></script>
-	<!-- 全局ajax -->
+	<!-- 自定义 js ajax -->
 	<script src="<c:url value='/js/base.js'/>"></script>
 	<script src="<c:url value='/js/notebook.js'/>"></script>
 	<script src="<c:url value='/js/note.js'/>"></script>
 	<script src="<c:url value='/js/login.js'/>"></script>
 	<script src="<c:url value='/js/cookie.js'/>"></script>
 	<script src="<c:url value='/js/token.js'/>"></script>
-	<!-- 页面事件 -->
+	<!-- 页面事件加载-->
 	<script src="<c:url value='/js/local.js'/>"></script>
 
 	<!-- ueditor -->
@@ -235,6 +453,11 @@
 			pc_height = pc_height - 50 - 30;
 			$("#pc-part-1-center").css("height", (pc_height - 31 - 31) + "px");
 			$("#pc-part-2-center").css("height", (pc_height - 31) + "px");
+			$("#pc-part-4-center").css("height", (pc_height - 31) + "px");
+			$("#pc-part-5-center").css("height", (pc_height - 31) + "px");
+			$("#pc-part-6-center").css("height", (pc_height - 31) + "px");
+			$("#pc-part-7-center").css("height", (pc_height - 31) + "px");
+			$("#pc-part-8-center").css("height", (pc_height - 31) + "px");
 			$("#pc-part-3-center").css("height", (pc_height - 44) + "px");
 			$(".ueditor-wrap").css("height", (pc_height - 44 - 44) + "px");
 			//$("#myEditor").css("height", (pc_height - 44 - 44 - 100) + "px");

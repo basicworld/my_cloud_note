@@ -16,7 +16,7 @@
 		</div>
 		<div class="header-func-user">
 			<div class="profile-nav">
-				<span class="profile-username">东方不败</span> <a
+				<span class="profile-username" id="profile-username"></span> <a
 					class="dropdown-toggle icon" data-toggle="dropdown"> <span
 					id="user-toggle-down-icon" class="fa fa-caret-down"></span>
 				</a>

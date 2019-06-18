@@ -70,7 +70,7 @@ public class NoteController {
 	// 加载笔记本的所有笔记
 	@RequestMapping(value = "/note/listnotes.do", method = RequestMethod.POST)
 	@ResponseBody
-	public NoteResult<List<Map>> listNotesFromBook(String bookId) {
+	public NoteResult<List<Map>> listNotesForBook(String bookId) {
 		logger.info("request loadNotes, bookId=" + bookId);
 		NoteResult<List<Map>> result = noteService.loadBookNotes(bookId);
 		return result;
