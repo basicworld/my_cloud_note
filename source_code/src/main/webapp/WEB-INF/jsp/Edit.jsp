@@ -119,7 +119,7 @@
 					<div class="module" data-toggle="niceScroll">
 						<div>
 							<ul>
-								<li><a class="unchecked"> <i class="fa fa-book"></i>
+								<!-- <li><a class="unchecked"> <i class="fa fa-book"></i>
 										默认笔记本
 										<div class="functions"
 											style="display: inline-block; position: absolute; right: 2px;">
@@ -127,7 +127,7 @@
 												<i class="fa fa-close small-icon"></i>
 											</div>
 										</div>
-								</a></li>
+								</a></li> -->
 								<!-- <li><a class="checked"> <i class="fa fa-book"></i>
 										默认笔记本
 								</a></li>
@@ -162,10 +162,59 @@
 			<!-- 笔记栏start -->
 			<div class="pc-part col-xs-3" id="pc-part-2" style="display:;">
 				<div id="pc-part-2-header" class="pc-part-header">
+					<div style="display: none" id="listNotesUrl"
+						value="<c:url value='/note/listnotes.do'/>"></div>
+					<div style="display: none" id="addNoteUrl"
+						value="<c:url value='/note/insert.do'/>"></div>
+					<div style="display: none" id="deleteNoteUrl"
+						value="<c:url value='/note/delete.do'/>"></div>
+					<div style="display: none" id="moveNoteUrl"
+						value="<c:url value='/note/move.do'/>"></div>
+					<div style="display: none" id="getNoteUrl"
+						value="<c:url value='/note/get.do'/>"></div>
+
 					<span class="pc-part-span">全部笔记</span>
-					<button id="add-note" class="btn btn-default btn-xs mybtn-plus">
+					<button class="btn btn-default btn-xs mybtn-plus"
+						data-toggle="modal" data-target="#addNoteModal">
 						<i class="fa fa-plus"></i>
 					</button>
+
+					<!-- 添加笔记本模态框（Modal） -->
+					<div class="modal fade" id="addNoteModal" tabindex="-1"
+						role="dialog" aria-labelledby="add-note-label" aria-hidden="true"
+						style="display: none;">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">×</button>
+									<h4 class="modal-title" id="add-note-label">添加笔记</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<!-- 笔记本名称输入框 -->
+										<div>
+											<label for="noteName" class="col-xs-3 control-label">笔记名称</label>
+											<div class="col-xs-8">
+												<input type="text" class="form-control" id="noteName" />
+											</div>
+											<div class="col-xs-1"></div>
+										</div>
+										<!-- 输入框end -->
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">关闭</button>
+									<!-- 点击确认触发绑定事件 添加笔记 -->
+									<button type="button" class="btn btn-primary" id="add-note-btn">确认</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- /.modal -->
 				</div>
 				<!-- center start -->
 				<div id="pc-part-2-center" class="pc-part-center">
@@ -173,7 +222,7 @@
 					<div class="module" data-toggle="niceScroll">
 						<div>
 							<ul>
-								<li><a class="checked"> <i class="fa fa-file-text-o"></i>
+								<!-- <li><a class="checked"> <i class="fa fa-file-text-o"></i>
 										默认笔记默认笔记默认笔记默
 										<div class="functions"
 											style="display: inline-block; position: absolute; right: 2px;">
@@ -218,7 +267,7 @@
 												<i class="fa fa-close small-icon"></i>
 											</div>
 										</div>
-								</a></li>
+								</a></li> -->
 
 							</ul>
 						</div>
@@ -386,8 +435,10 @@
 					<span>编辑笔记</span>
 				</div>
 				<div style="float: right; padding: 1px 10px;">
-					<button class="btn btn-primary">保存笔记</button>
+					<button class="btn btn-primary" id="save-note-btn">保存笔记</button>
 				</div>
+				<div style="display: none" id="updateNoteUrl"
+						value="<c:url value='/note/update.do'/>"></div>
 			</div>
 			<div id="pc-part-3-center" class="pc-part-center">
 				<div class="module" data-toggle="niceScroll">
@@ -406,8 +457,8 @@
 								<div class="col-xs-12 margin-zero">
 									<script type="text/plain" id="myEditor"
 										style="width: 100%; height: 400px;">
-									<p>点击输入内容...</p>
-								</script>
+										<p>点击输入内容...</p>
+									</script>
 								</div>
 							</div>
 						</div>
@@ -445,6 +496,10 @@
 		src="<c:url value='/js/mathquill.min.js'/>"></script>
 	<!-- Optional JavaScript -->
 	<script type="text/javascript">
+		//实例化Ueditor编辑器
+		// um变量不能放在$(document).ready 中 否则其他的js引用失败
+		var um = UM.getEditor('myEditor');
+
 		function get_dom(e) {
 			return document.getElementById(e);
 		}
@@ -478,8 +533,10 @@
 			// 开始写 jQuery 代码...
 			set_height();
 			toggle_hidden();
-			//实例化Ueditor编辑器
-			var um = UM.getEditor('myEditor');
+
+			// 实例化的ueditor宽度有问题，这里重新设置宽度
+			var width = $("#pc-part-3").width();
+			$('#myEditor').width(width - 30 - 6 - 20);
 
 		});
 		//改变窗口大小时调整页面尺寸

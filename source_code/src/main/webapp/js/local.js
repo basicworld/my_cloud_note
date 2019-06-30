@@ -23,7 +23,21 @@ $(function() {
 		$(this).siblings("li").children("a").removeClass("checked");
 		// 本笔记本添加点击效果
 		$(this).children("a").addClass("checked");
+		// 获取笔记本中的笔记
+		var notebookId = getCheckedNoteBook().data("notebook").notebookId;
+		listNotesForNotebook(notebookId);
 		
+	});
+	// 点击笔记 设置点击效果 并加载笔记内容
+	$(document).on("click", "#pc-part-2 li", function(){
+		// 取消其他笔记的选中效果
+		$(this).siblings('li').children('a').removeClass('checked');
+		// 添加选中效果
+		$(this).children('a').addClass('checked');
+		// 获取笔记详情
+		var noteId = getCheckedNote().data("note").noteId;
+		console.log("noteId= " + noteId);
+		getNoteDetail(noteId);
 	});
 	// 添加笔记本
 	$("#add-notebook-btn").click(function() {
@@ -35,4 +49,34 @@ $(function() {
 			addNoteBook(notebookName);
 		}
 	});
+	// 添加笔记
+	$("#add-note-btn").click(function() {
+		var noteName = $("#noteName").val();
+		var notebookId = getCheckedNoteBook().data("notebook").notebookId;
+		if (noteName == null || noteName == "") {
+			return;
+		} else {
+			console.log("noteName=" + noteName +", notebookId=" + notebookId);
+			addNoteForNotebook(notebookId, noteName);
+		}
+	});
+	// 修改保存笔记内容
+	$("#save-note-btn").click(function(){
+		var notebookId = getCheckedNoteBook().data("notebook").notebookId;
+		var noteId = getCheckedNote().data("note").noteId;
+		var noteTitle = $("#input-note-title").val();
+		var noteBody = um.getContent();
+		var noteDom = getCheckedNote();
+		
+		updateNote(notebookId, noteId, noteTitle, noteBody, noteDom);
+	});
 });
+
+// 获取已选择的笔记本
+function getCheckedNoteBook() {
+	return $("#pc-part-1-center .checked").parent();
+}
+// 获取已选择的笔记
+function getCheckedNote(){
+	return $("#pc-part-2-center .checked").parent();
+}

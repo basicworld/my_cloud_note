@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wlfei.mcn.entity.Note">
+<mapper namespace="com.wlfei.mcn.dao.NoteDao">
 	<!-- // 根据笔记本ID查找笔记 返回list public List<Map> findByBookId(String bookId); -->
 	<select id="findByBookId" parameterType="String"
 		resultType="Map">
-		select cn_note_id,cn_note_title from cn_note where
+		select cn_note_id as noteId,cn_note_title as noteTitle from cn_note where
 		cn_notebook_id=#{bookId}
 		and cn_note_status_id='1'
 	</select>

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +17,7 @@ import com.wlfei.mcn.entity.Share;
 import com.wlfei.mcn.service.NoteService;
 import com.wlfei.mcn.service.ShareService;
 import com.wlfei.mcn.util.NoteResult;
-
+@Controller
 public class NoteController {
 	private static final Log logger = LogFactory.getLog(NoteController.class);
 	@Resource

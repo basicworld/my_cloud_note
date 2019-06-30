@@ -5,8 +5,11 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
+import com.wlfei.mcn.controller.NoteController;
 import com.wlfei.mcn.dao.NoteDao;
 import com.wlfei.mcn.dao.ShareDao;
 import com.wlfei.mcn.entity.Note;
@@ -15,6 +18,8 @@ import com.wlfei.mcn.util.NoteUtil;
 
 @Service("noteService")
 public class NoteServiceImpl implements NoteService {
+	private static final Log logger = LogFactory.getLog(NoteController.class);
+
 	@Resource
 	private NoteDao noteDao;
 	@Resource
@@ -34,6 +39,7 @@ public class NoteServiceImpl implements NoteService {
 
 	// 查询笔记
 	public NoteResult<Note> loadNote(String noteId) {
+		logger.debug("noteId="+noteId);
 		Note note = noteDao.findByNoteId(noteId);
 
 		NoteResult<Note> result = new NoteResult<Note>();
