@@ -18,7 +18,109 @@ function listNotesForNotebook(notebookId){
 				var notesList = result.data;
 				$(notesList).each(function(){
 					var li = '<li><a class="unchecked"> <i class="fa fa-file-text-o"></i> ' + this.noteTitle + 
-					' <div class="functions"style="display: inline-block; position: absolute; right: 2px;"> <div title="移动" class="function"> <i class="fa fa-random small-icon"></i> </div> <div title="分享" class="function"> <i class="fa fa-share small-icon"></i> </div> <div title="删除" class="function"> <i class="fa fa-close small-icon"></i> </div> </div> </a></li>';
+					' <div class="functions"style="display: inline-block; position: absolute; right: 2px;"> <div title="移动" class="function"> <i class="fa fa-random small-icon"></i> </div> <div title="分享" class="function"> <i class="fa fa-share small-icon"></i> </div> <div title="删除" class="function" data-toggle="modal" data-target="#delNoteModal"> <i class="fa fa-close small-icon"></i> </div> </div> </a></li>';
+					// 显示新添加的笔记和数据
+					$("#pc-part-2 ul").append(li);
+					$("#pc-part-2 ul li:last").data("note", this);
+				});
+			} else {
+				alert(result.msg);
+			}
+		},
+		error : function(xhr, status, error) {
+			alert("服务器连接失败");
+		}
+	});
+}
+// 加载回收站的笔记列表
+function listNotesForRecycleNotebook(notebookId){
+	var listRecycleNotesUrl = $("#listRecycleNotesUrl").attr("value");
+	var userId = getCookie("userId");
+	var token = getToken();
+	$.ajax({
+		type : "post",
+		url : listRecycleNotesUrl,
+		dateTyoe : "json",
+		data : {
+			"userId" : userId,
+			"token" : token,
+			"bookId" : notebookId,
+		},
+		success : function(result) {
+			console.log(result);
+			if (result.status == 0) {
+				var notesList = result.data;
+				$(notesList).each(function(){
+					var li = '<li><a class="unchecked"> <i class="fa fa-file-text-o"></i> ' + this.noteTitle + 
+					' <div class="functions"style="display: inline-block; position: absolute; right: 2px;"> <div title="移动" class="function"> <i class="fa fa-random small-icon"></i> </div> <div title="分享" class="function"> <i class="fa fa-share small-icon"></i> </div> <div title="删除" class="function" data-toggle="modal" data-target="#delNoteModal"> <i class="fa fa-close small-icon"></i> </div> </div> </a></li>';
+					// 显示新添加的笔记和数据
+					$("#pc-part-2 ul").append(li);
+					$("#pc-part-2 ul li:last").data("note", this);
+				});
+			} else {
+				alert(result.msg);
+			}
+		},
+		error : function(xhr, status, error) {
+			alert("服务器连接失败");
+		}
+	});
+}
+// 加载我的收藏的笔记列表
+function listNotesForMyLikeNotebook(notebookId){
+	var postUrl = $("#listMyLikeNotesUrl").attr("value");
+	var userId = getCookie("userId");
+	var token = getToken();
+	$.ajax({
+		type : "post",
+		url : postUrl,
+		dateTyoe : "json",
+		data : {
+			"userId" : userId,
+			"token" : token,
+			"bookId" : notebookId,
+		},
+		success : function(result) {
+			console.log(result);
+			if (result.status == 0) {
+				var notesList = result.data;
+				$(notesList).each(function(){
+					var li = '<li><a class="unchecked"> <i class="fa fa-file-text-o"></i> ' + this.noteTitle + 
+					' <div class="functions"style="display: inline-block; position: absolute; right: 2px;"> <div title="移动" class="function"> <i class="fa fa-random small-icon"></i> </div> <div title="分享" class="function"> <i class="fa fa-share small-icon"></i> </div> <div title="删除" class="function" data-toggle="modal" data-target="#delNoteModal"> <i class="fa fa-close small-icon"></i> </div> </div> </a></li>';
+					// 显示新添加的笔记和数据
+					$("#pc-part-2 ul").append(li);
+					$("#pc-part-2 ul li:last").data("note", this);
+				});
+			} else {
+				alert(result.msg);
+			}
+		},
+		error : function(xhr, status, error) {
+			alert("服务器连接失败");
+		}
+	});
+}
+// 加载我的分享的笔记列表
+function listNotesForShareNotebook(notebookId){
+	var postUrl = $("#listMyLikeNotesUrl").attr("value");
+	var userId = getCookie("userId");
+	var token = getToken();
+	$.ajax({
+		type : "post",
+		url : postUrl,
+		dateTyoe : "json",
+		data : {
+			"userId" : userId,
+			"token" : token,
+			"bookId" : notebookId,
+		},
+		success : function(result) {
+			console.log(result);
+			if (result.status == 0) {
+				var notesList = result.data;
+				$(notesList).each(function(){
+					var li = '<li><a class="unchecked"> <i class="fa fa-file-text-o"></i> ' + this.noteTitle + 
+					' <div class="functions"style="display: inline-block; position: absolute; right: 2px;"> <div title="移动" class="function"> <i class="fa fa-random small-icon"></i> </div> <div title="分享" class="function"> <i class="fa fa-share small-icon"></i> </div> <div title="删除" class="function" data-toggle="modal" data-target="#delNoteModal"> <i class="fa fa-close small-icon"></i> </div> </div> </a></li>';
 					// 显示新添加的笔记和数据
 					$("#pc-part-2 ul").append(li);
 					$("#pc-part-2 ul li:last").data("note", this);

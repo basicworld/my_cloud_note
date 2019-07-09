@@ -27,6 +27,15 @@
 <body>
 	<!-- header area start -->
 	<c:import url="header.jsp"></c:import>
+	<div class="url" style="display: none">
+		<div style="display: none" id="listNotebooksUrl"
+			value="<c:url value='/book/listbooks.do'/>"></div>
+		<div style="display: none" id="addNotebookUrl"
+			value="<c:url value='/book/insert.do'/>"></div>
+			<!-- 回收站url -->
+		<div style="display: none" id="listRecycleNotesUrl"
+			value="<c:url value='/book/listbooks.do'/>"></div>
+	</div>
 	<!-- header area end -->
 	<!-- 内容区start -->
 	<div class="row" id="center" style="margin: 0">
@@ -39,10 +48,7 @@
 			<!-- 笔记本栏 -->
 
 			<div class="pc-part col-xs-2" id="pc-part-1">
-				<div style="display: none" id="listNotebooksUrl"
-					value="<c:url value='/book/listbooks.do'/>"></div>
-				<div style="display: none" id="addNotebookUrl"
-					value="<c:url value='/book/insert.do'/>"></div>
+				
 				<div id="pc-part-1-header" class="pc-part-header">
 					<span class="pc-part-span">全部笔记本</span>
 					<!-- 添加笔记本按钮 点击触发模态框 -->
@@ -208,6 +214,37 @@
 										data-dismiss="modal">关闭</button>
 									<!-- 点击确认触发绑定事件 添加笔记 -->
 									<button type="button" class="btn btn-primary" id="add-note-btn">确认</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- /.modal -->
+					<!-- 删除笔记本模态框（Modal） -->
+					<div class="modal fade" id="delNoteModal" tabindex="-1"
+						role="dialog" aria-labelledby="del-note-label" aria-hidden="true"
+						style="display: none;">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">×</button>
+									<h4 class="modal-title" id="del-note-label">删除笔记确认</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<!-- 显示笔记笔记名称并确认 -->
+										<div class="col-xs-12">
+											<span id="del-note-ensure-text">确认将笔记[XXXX]移入回收站吗？</span>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">取消</button>
+									<!-- 点击确认触发绑定事件 添加笔记 -->
+									<button type="button" class="btn btn-primary" id="del-note-btn">确认</button>
 								</div>
 							</div>
 							<!-- /.modal-content -->
@@ -423,7 +460,39 @@
 				</div>
 				<!-- /.center -->
 			</div>
-			<!-- 搜索结果end -->
+			<!-- 我的分享end -->
+			<!-- 预览笔记start -->
+			<div class="pc-part col-xs-7" id="pc-part-8" style="display: none;">
+				<div id="pc-part-8-header">
+					<div
+						style="float: left; font-size: 18px; line-height: 31px; padding: 3px 10px;">
+						<span>预览笔记</span>
+					</div>
+				</div>
+				<div id="pc-part-8-center" class="pc-part-center">
+					<div class="module" data-toggle="niceScroll">
+						<div class="ueditor-wrap margin-zero">
+							<div id="pc-part-8-center-title"
+								style="padding: 5px 0px; height: 44px;">
+								<div class="row margin-zero">
+									<div class="col-xs-9">
+										<div class="preview-note" id="preview-note-title">预览标题区</div>
+									</div>
+								</div>
+							</div>
+							<div id="pc-part-8-center-ueditor"">
+								<div class="row margin-zero">
+									<div class="col-xs-12 margin-zero">
+										<div class="preview-note" id="preview-note-body">预览内容区</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 预览笔记end -->
 
 		</div>
 		<!-- 可隐藏区域end -->
@@ -438,7 +507,7 @@
 					<button class="btn btn-primary" id="save-note-btn">保存笔记</button>
 				</div>
 				<div style="display: none" id="updateNoteUrl"
-						value="<c:url value='/note/update.do'/>"></div>
+					value="<c:url value='/note/update.do'/>"></div>
 			</div>
 			<div id="pc-part-3-center" class="pc-part-center">
 				<div class="module" data-toggle="niceScroll">
@@ -512,7 +581,7 @@
 			$("#pc-part-5-center").css("height", (pc_height - 31) + "px");
 			$("#pc-part-6-center").css("height", (pc_height - 31) + "px");
 			$("#pc-part-7-center").css("height", (pc_height - 31) + "px");
-			$("#pc-part-8-center").css("height", (pc_height - 31) + "px");
+			$("#pc-part-8-center").css("height", (pc_height - 44) + "px");
 			$("#pc-part-3-center").css("height", (pc_height - 44) + "px");
 			$(".ueditor-wrap").css("height", (pc_height - 44 - 44) + "px");
 			//$("#myEditor").css("height", (pc_height - 44 - 44 - 100) + "px");
@@ -523,9 +592,11 @@
 			if (pc_width < 780) {
 				$("#toggle_hidden").hide();
 				$("#pc-part-3").attr("class", "pc-part col-xs-12");
+				$("#pc-part-8").attr("class", "pc-part col-xs-12");
 			} else {
 				$("#toggle_hidden").show();
 				$("#pc-part-3").attr("class", "pc-part col-xs-7");
+				$("#pc-part-8").attr("class", "pc-part col-xs-7");
 			}
 		}
 		$(document).ready(function() {

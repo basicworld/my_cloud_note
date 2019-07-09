@@ -188,7 +188,7 @@ p {
 	background: #5196ce;
 }
 
-#pc-part-3-header {
+#pc-part-3-header,#pc-part-8-header {
 	background: #eee;
 	height: 44px;
 	padding-top: 3px;
@@ -196,11 +196,16 @@ p {
 	border-bottom: 2px solid #337ab7;
 }
 
-#pc-part-3-center {
+#pc-part-3-center,#pc-part-8-center {
 	background: #eee;
 	float: left;
 }
-
+.preview-note{
+	border: 1px solid #c0c0c0;
+	border-radius: 3px;
+	overflow: hidden;
+	white-space: nowrap;
+}
 .module {
 	position: absolute;
 	top: 0;
